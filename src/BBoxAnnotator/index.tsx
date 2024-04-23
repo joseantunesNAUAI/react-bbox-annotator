@@ -26,9 +26,10 @@ type Props = {
     labels?: string | string[];
     onChange: (entries: EntryType[]) => void;
     borderWidth?: number;
+    entries: EntryType[];
 };
 
-const BBoxAnnotator = React.forwardRef<any, Props>(({ url, borderWidth = 2, inputMethod, labels, onChange }, ref) => {
+const BBoxAnnotator = React.forwardRef<any, Props>(({ url, borderWidth = 2, inputMethod, labels, onChange, entries }, ref) => {
     const classes = useStyles();
     const [pointer, setPointer] = useState<{ x: number; y: number } | null>(null);
     const [offset, setOffset] = useState<{ x: number; y: number } | null>(null);
@@ -36,7 +37,7 @@ const BBoxAnnotator = React.forwardRef<any, Props>(({ url, borderWidth = 2, inpu
         ({
             id: string;
             showCloseButton: boolean;
-        } & EntryType)[]
+        } & entries)[]
     >([]);
     const [multiplier, setMultiplier] = useState(1);
     useEffect(() => {
