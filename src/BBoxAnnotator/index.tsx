@@ -37,7 +37,7 @@ const BBoxAnnotator = React.forwardRef<any, Props>(({ url, borderWidth = 2, inpu
         ({
             id: string;
             showCloseButton: boolean;
-        } & entries)[]
+        } & EntryType)[]
     >([]);
     const [multiplier, setMultiplier] = useState(1);
     console.log(defaultEntries);
