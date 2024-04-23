@@ -26,10 +26,10 @@ type Props = {
     labels?: string | string[];
     onChange: (entries: EntryType[]) => void;
     borderWidth?: number;
-    entries: EntryType[];
+    defaultEntries?: EntryType[];
 };
 
-const BBoxAnnotator = React.forwardRef<any, Props>(({ url, borderWidth = 2, inputMethod, labels, onChange, entries }, ref) => {
+const BBoxAnnotator = React.forwardRef<any, Props>(({ url, borderWidth = 2, inputMethod, labels, onChange, defaultEntries }, ref) => {
     const classes = useStyles();
     const [pointer, setPointer] = useState<{ x: number; y: number } | null>(null);
     const [offset, setOffset] = useState<{ x: number; y: number } | null>(null);
@@ -40,7 +40,9 @@ const BBoxAnnotator = React.forwardRef<any, Props>(({ url, borderWidth = 2, inpu
         } & entries)[]
     >([]);
     const [multiplier, setMultiplier] = useState(1);
+    console.log(defaultEntries);
     useEffect(() => {
+        console.log(defaultEntries);
         onChange(
             entries.map((entry) => ({
                 width: Math.round(entry.width * multiplier),
